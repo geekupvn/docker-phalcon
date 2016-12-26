@@ -1,5 +1,8 @@
-FROM eboraas/apache-php
-MAINTAINER Ed Boraas <ed@boraas.ca>
+FROM eboraas/apache
+MAINTAINER Thinh Voxuan <thinhvoxuan@gmail.com>
+
+RUN apt-get update && apt-get -y install php5 && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN /usr/sbin/a2dismod 'mpm_*' && /usr/sbin/a2enmod mpm_prefork
 
 RUN /usr/sbin/a2enmod rewrite
 
@@ -20,6 +23,7 @@ RUN /bin/echo 'extension=phalcon.so' >/etc/php5/mods-available/phalcon.ini
 RUN /usr/sbin/php5enmod phalcon
 WORKDIR /var/www/phalcon/web
 RUN /bin/echo '<html><body><h1>It works!</h1></body></html>' > /var/www/phalcon/web/index.html
+WORKDIR /var/www/phalcon
 
 #RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log && ln -sf /proc/self/fd/1 /var/log/apache2/error.log
 
