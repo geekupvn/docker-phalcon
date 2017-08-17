@@ -9,6 +9,8 @@ RUN /usr/sbin/a2enmod rewrite
 ADD 000-phalcon.conf /etc/apache2/sites-available/
 ADD 001-phalcon-ssl.conf /etc/apache2/sites-available/
 RUN /usr/sbin/a2dissite '*' && /usr/sbin/a2ensite 000-phalcon 001-phalcon-ssl
+RUN a2enmod expires
+RUN a2enmod headers
 
 WORKDIR /tmp
 # Run build process on one line to avoid generating bloat via intermediate images
