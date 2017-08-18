@@ -1,4 +1,4 @@
-FROM eboraas/apache-php
+FROM ubuntu:14.04
 MAINTAINER Ed Boraas <ed@boraas.ca>
 
 RUN /usr/sbin/a2enmod rewrite
