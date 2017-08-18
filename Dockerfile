@@ -1,4 +1,4 @@
-FROM eboraas/apache
+FROM ubuntu:14.04
 MAINTAINER Thinh Voxuan <thinhvoxuan@gmail.com>
 
 RUN apt-get update && apt-get -y install php5 && apt-get clean && rm -rf /var/lib/apt/lists/*
